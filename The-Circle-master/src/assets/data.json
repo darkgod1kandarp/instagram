@@ -1,0 +1,79 @@
+[
+  {
+    "id": 0,
+    "name": "Karl",
+    "desc": "Developer",
+    "age": 26,
+    "image": "https://images.unsplash.com/photo-1599598177738-d4a1d465b2fd?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTJ8fGRlYWR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "likedUsers": [],
+    "superLikedUsers": [],
+    "dislikedUsers": [],
+    "likedBy": []
+  },
+  {
+    "id": 1,
+    "name": "kandarp",
+    "desc": "klc",
+    "age": 35,
+    "image": "https://images.unsplash.com/photo-1599598177738-d4a1d465b2fd?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTJ8fGRlYWR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "likedUsers": [],
+    "superLikedUsers": [],
+    "dislikedUsers": [],
+    "likedBy": []
+  },
+  {
+    "id": 2,
+    "name": "Emily",
+    "desc": "Actress",
+    "age": 35,
+    "image": "https://images.unsplash.com/photo-1592980733465-232b03ba58ed?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTl8fGluc2VjdHN8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "likedUsers": [],
+    "superLikedUsers": [],
+    "dislikedUsers": [],
+    "likedBy": []
+  },
+  {
+    "id": 3,
+    "name": "Michael",
+    "desc": "Manager",
+    "age": 45,
+    "image": "https://images.unsplash.com/photo-1591193149781-25e69bef1aff?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80",
+    "likedUsers": [],
+    "superLikedUsers": [],
+    "dislikedUsers": [],
+    "likedBy": []
+  },
+  {
+    "id": 4,
+    "name": "Dwight",
+    "desc": "Sales",
+    "age": 40,
+    "image": "https://images.unsplash.com/photo-1505707615801-f8fbba256560?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    "likedUsers": [],
+    "superLikedUsers": [],
+    "dislikedUsers": [],
+    "likedBy": []
+  },
+  {
+    "id": 5,
+    "name": "Jessica",
+    "desc": "Actress",
+    "age": 37,
+    "image": "https://images.unsplash.com/photo-1573523267772-a4db2cbdab11?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=947&q=80",
+    "likedUsers": [],
+    "superLikedUsers": [],
+    "dislikedUsers": [],
+    "likedBy": []
+  },
+  {
+    "id": 6,
+    "name": "Alexandra",
+    "desc": "Actress",
+    "age": 32,
+    "image": "https://images.unsplash.com/photo-1528135337525-3c69f9d26b4e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1929&q=80",
+    "likedUsers": [],
+    "superLikedUsers": [],
+    "dislikedUsers": [],
+    "likedBy": []
+  }
+]
