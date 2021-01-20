@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import Sidebar from "./components/Sidebar.component";
 import {
   BrowserRouter as Router,
@@ -7,7 +7,7 @@ import {
   useHistory,
 } from "react-router-dom";
 import Overview from "./pages/Overview.pages";
-import SignupFormComp from "./pages/Signup.pages";
+import SignupFormComp from "./pages/Signup/Signup.pages";
 import SigninFormComp from "./pages/Signin.pages";
 import ForgetPasswordFormComp from "./pages/Forget.pages";
 import FormSecondary from "./components/FormSecondary.component";
