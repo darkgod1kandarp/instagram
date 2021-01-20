@@ -1,7 +1,6 @@
 import React from "react";
 import validateForget from "../utils/validateForget.utils";
 import useForget from "../hooks/useForget.hooks";
-import "../Form.css";
 
 const FormForgot = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForget(

@@ -1,6 +1,5 @@
 import React from "react";
 import useForgetVerification from "../hooks/useForgetVerification.hooks";
-import "../Form.css";
 
 const FormForgotVerification = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForgetVerification(

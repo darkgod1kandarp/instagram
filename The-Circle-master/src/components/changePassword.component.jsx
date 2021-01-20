@@ -1,7 +1,6 @@
 import React from "react";
 import validateChangePassword from "../utils/validateChangePassword.utils";
 import useSignIn from "../hooks/useSignIn.hooks.";
-import "./Form.css";
 
 const changePassword = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useSignIn(

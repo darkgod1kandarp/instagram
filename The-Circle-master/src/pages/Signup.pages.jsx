@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../Form.css";
-import FormSignup from "../components/FormSignup.component";
+
+import FormSignup from "../components/FormSignup/FormSignup.component";
 import FormSuccess from "../components/FormSuccess.component";
 import Image from "../assets/TheCircle.jpeg";
 

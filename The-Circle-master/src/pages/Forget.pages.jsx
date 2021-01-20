@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Form.css";
+
 import FormForgotVerification from "../components/FormForgotVerification.component";
 import FormForgot from "../components/FormForgot.component";
 const ForgetPasswordFormComp = () => {

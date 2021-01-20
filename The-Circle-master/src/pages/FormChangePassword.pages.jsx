@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Form.css";
+
 import FormForgotVerification from "./FormForgotVerification";
 import changePassword from "../components/changePassword";
 import FormForgot from "../components/FormForgot.component";

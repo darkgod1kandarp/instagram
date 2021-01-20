@@ -1,14 +1,14 @@
 import React from "react";
-import validateSignUpInfo from "../utils/validateSignUpInfo.utils";
-import useSignUp from "../hooks/useSignUp.hooks";
-import "../Form.css";
-const FormSignup = ({ submitForm,history , setUser }) => {
+import validateSignUpInfo from "../../utils/validateSignUpInfo.utils";
+import useSignUp from "../../hooks/useSignUp.hooks";
+import "./FormSignup.styles.scss";
+const FormSignup = ({ submitForm, history, setUser }) => {
   // const { handleChange, handleSubmit, values, errors } = useSignUp(
   //   submitForm,
   //   validateuse
   // );
 
-  const { handleChange, handleSubmit, values ,user } = useSignUp(
+  const { handleChange, handleSubmit, values, user } = useSignUp(
     submitForm,
     validateSignUpInfo
   );
@@ -65,15 +65,19 @@ const FormSignup = ({ submitForm,history , setUser }) => {
           />
           <p>{values.passwordError}</p>
         </div>
-        <button className="form-input-btn" type="submit" onClick={() => {
-          console.log("Con",values)
-          if(values.username){
-            setUser({
-              username:values.username,
-            });
-            console.log(user)
-          }
-        }}>
+        <button
+          className="form-input-btn"
+          type="submit"
+          onClick={() => {
+            console.log("Con", values);
+            if (values.username) {
+              setUser({
+                username: values.username,
+              });
+              console.log(user);
+            }
+          }}
+        >
           Sign up
         </button>
         <span className="form-input-login">
