@@ -21,7 +21,7 @@ class hobby(models.Model):
     hobby4 = models.IntegerField()
     hobby5 = models.IntegerField()
 
-class pipctures(models.Model):
+class pictures(models.Model):
     images = models.ImageField(upload_to='images/',blank=True, null=True)
     name1 = models.ForeignKey(Name1,on_delete=models.CASCADE)
 class Tagged(models.Model):

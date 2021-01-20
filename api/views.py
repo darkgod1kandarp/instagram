@@ -35,7 +35,7 @@ def login_list(request):
         return JsonResponse(login1.data,safe=False)
     elif request.method=='POST':
         data = JSONParser().parse(request)
-        print(data)
+        print(data['email1'])
         try:
             k = data['name1'] 
             name_checking = Name1.objects.get(username1 = k)
@@ -206,9 +206,6 @@ def view(request):
                         array.append("hobby4")
                     if f.hobby5==1:
                         array.append("hobby5")
-
-
-
                     f = description.objects.get(name1 = i.name1)
                     desc = f.descript
                     f = pictures.objects.get(name1 = i.name1)

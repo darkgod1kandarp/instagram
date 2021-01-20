@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import Explore from "./pages/Explore.pages";
 import DashBoard from "./App";
 import CrushSelection from "./components/CrushSelection/CrushSelection.component";
-
+import FormForgotVerification from "./components/FormForgotVerification.component";
 import {
   Reports,
   ReportsOne,
@@ -28,10 +28,14 @@ function App() {
   const history = useHistory();
   const [user, setUser] = useState({});
   useEffect(() => {
-    // if (!user.id && history.location.pathname !== "/SignIn" && history.location.pathname !== "/Forgot") {
-    //   history.push("/Signup");
-    //   console.log(history)
-    // }
+    if (
+      !user.id &&
+      history.location.pathname !== "/SignIn" &&
+      history.location.pathname !== "/Forgot"
+    ) {
+      history.push("/Signup");
+      console.log(history);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const MenuBar = () => {
@@ -58,6 +62,7 @@ function App() {
           path="/getInfo"
           render={() => <FormSecondary user={user} history={history} />}
         />
+        <Route path="/verifyotp" component={FormForgotVerification} />
         {/* <Route path="/DashBoard" component={DashBoard}/> */}
         <Route path="/DashBoard" component={DashBoard}></Route>
         <Route path="/" render={() => <CrushSelection user={user} />}></Route>
