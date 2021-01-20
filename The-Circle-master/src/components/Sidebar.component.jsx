@@ -53,7 +53,7 @@ const Sidebar = ({setUser}) => {
           <NavIcon to="#">
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          <Link to="/logout" onClick={() => setUser(false)}>
+          <Link to="/logout" onClick={() => setUser(null)}>
             Log Out
           </Link>
         </Nav>

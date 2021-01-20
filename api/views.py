@@ -195,7 +195,6 @@ def view(request):
                     array = []
                     top +=1
                     f = hobby.objects.get(name1 = i.name1)
-
                     if f.hobby2==1:
                         array.append("hobby1")
                     if f.hobby2==1:
@@ -206,9 +205,6 @@ def view(request):
                         array.append("hobby4")
                     if f.hobby5==1:
                         array.append("hobby5")
-
-
-
                     f = description.objects.get(name1 = i.name1)
                     desc = f.descript
                     f = pictures.objects.get(name1 = i.name1)
@@ -216,11 +212,6 @@ def view(request):
                     name = i.name1.username1
                     dict1 = {"image":ima,"description":desc,"hobby":array,"name":name}
                     dict_overall[top] = dict1
-
-
-                    
-                    
-                
                 updating = learn.objects.get(name1 =name12)
                 updating.latitude1 = data['latitude1']
                 updating.longitude1 = data['longitude1']
@@ -233,8 +224,7 @@ def view(request):
             for i in tag1:
                 count = i.box
             count+=1
-
-            dict_overall = {"error":"new user in that area"}
+            dict_overall = {"NWST"}
             tagging = Tagged.objects.create(box = count)
             updating = learn.objects.get(name1 =name12)
             updating.latitude1 = data['latitude1']
