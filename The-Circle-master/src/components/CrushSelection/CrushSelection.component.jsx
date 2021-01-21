@@ -72,36 +72,47 @@ const CrushSelection = ({user}) => {
         url:"http://localhost:8000/view",
         data
       }).then(resp => {
-        console.log(resp)
+        const objArr = Object.keys(resp.data);
+        const personArr = []
+        for(let i = 0 ; i< objArr.length;i++){
+         if( resp.data[objArr[i]].name !== user.username){
+           personArr.push(resp.data[objArr[i]]);
+           console.log(resp.data[objArr[i]])
+           
+         }
+        }
+        setPeople(personArr);
+        setCurrentPerson(people[0])
+        setIndex(0)
       })
    });
   
-    setPeople([
-      {
-        img_url:"https://via.placeholder.com/150",
-        username:"Heet Vakharia",
-        description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
-        hobbies:["hobby1","hobby2","hobby3","hobby5"]
-      }
-      ,{
-        img_url:"https://via.placeholder.com/150",
-        username:"Kanthan Vakharia",
-        description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
-        hobbies:["hobby1",,"hobby3","hobby4","hobby5"]
-      }
-      ,{
-        img_url:"https://via.placeholder.com/150",
-        username:"Prathana Sanghvi",
-        description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
-        hobbies:["hobby2","hobby3","hobby4","hobby5"]
-      }
-      ,{
-        img_url:"https://via.placeholder.com/150",
-        username:"Prachi Desai",
-        description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
-        hobbies:["hobby1","hobby2","hobby3","hobby4"]
-      },
-    ])
+    // setPeople([
+    //   {
+    //     img_url:"https://via.placeholder.com/150",
+    //     username:"Heet Vakharia",
+    //     description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
+    //     hobbies:["hobby1","hobby2","hobby3","hobby5"]
+    //   }
+    //   ,{
+    //     img_url:"https://via.placeholder.com/150",
+    //     username:"Kanthan Vakharia",
+    //     description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
+    //     hobbies:["hobby1",,"hobby3","hobby4","hobby5"]
+    //   }
+    //   ,{
+    //     img_url:"https://via.placeholder.com/150",
+    //     username:"Prathana Sanghvi",
+    //     description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
+    //     hobbies:["hobby2","hobby3","hobby4","hobby5"]
+    //   }
+    //   ,{
+    //     img_url:"https://via.placeholder.com/150",
+    //     username:"Prachi Desai",
+    //     description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
+    //     hobbies:["hobby1","hobby2","hobby3","hobby4"]
+    //   },
+    // ])
     setCurrentPerson(people[0]);
     console.log(people[0]);
   }, [])
@@ -130,16 +141,19 @@ const CrushSelection = ({user}) => {
     <CardWrapper>
       <button onClick={() => handleClick("dislike")}>X</button>
       {currentPerson ?<Card>
-      <UserImg src={currentPerson.img_url} />
+      <UserImg src={`http://localhost:8000${currentPerson.image}`} />
       <div className="user__info">
-        <h1>{currentPerson.username}</h1>
+        <h1>{currentPerson.name}</h1>
         <Description>{currentPerson.description}</Description>
         <h3 className="">Hobbies</h3>
         <HobbiesWrapper>
           {
-            currentPerson.hobbies.map(hobby => (
+            currentPerson.hobby.map(hobby => (
               <Hobbies>{hobby}</Hobbies>
             ))
+
+
+
           }
         </HobbiesWrapper>
        
