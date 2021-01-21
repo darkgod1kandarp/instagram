@@ -11,15 +11,15 @@ import datetime
 from PIL import Image
 from io import BytesIO
 from django.core.files import File
-def compress_image(image):
-    foo = Image.open(image)
-    x, y = foo.size
-    x2, y2 = math.floor(x-50), math.floor(y-20)
-    foo = foo.resize((x2,y2),Image.ANTIALIAS)
-    foo.save(foo, 'PNG', quality=10)
-    compressed = File(foo, name=image.name)
-    foo.close()
-    return compressed
+# def compress_image(image):
+#     foo = Image.open(image)
+#     x, y = foo.size
+#     x2, y2 = math.floor(x-50), math.floor(y-20)
+#     foo = foo.resize((x2,y2),Image.ANTIALIAS)
+#     foo.save(foo, 'PNG', quality=10)
+#     compressed = File(foo, name=image.name)
+#     foo.close() 
+#     return compressed
 otp = False
 def generateOTP():
     digits = "0123456789"
@@ -161,8 +161,7 @@ def image_storing(request):
     if request.method=="POST":
         
         name1 = Name1.objects.get(username1 =request.POST['name1'])
-        image = compress_image(request.FILES['image'])
-        one  = pictures.objects.create(images = image,name1 = name1)
+        one  = pictures.objects.create(images = request.FILES['image'],name1 = name1)
         
         url = one.images.url;
         sending = {"error":"done",'url':url}
