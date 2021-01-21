@@ -73,13 +73,14 @@ const FormSignup = ({ submitForm, history, setUser }) => {
           </label>
           <p>{values.passwordError}</p>
         </div>
-        <label htmlFor="show--password">
-          <input
-            type="checkbox"
-            id="show--password"
-            onClick={() => setShowPassword(!showPassword)}
-          />
-        </label>
+        <input
+          type="checkbox"
+          id="show--password"
+          onClick={() => setShowPassword(!showPassword)}
+          required
+        />
+        <label htmlFor="show--password">show password</label>
+
         <button
           className="form-input-btn"
           type="submit"

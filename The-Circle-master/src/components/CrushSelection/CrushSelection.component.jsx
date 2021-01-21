@@ -127,13 +127,13 @@ const CrushSelection = ({ user }) => {
       <button onClick={() => handleClick("dislike")}>X</button>
       {currentPerson ? (
         <Card>
-          <UserImg src={currentPerson.img_url} />
+          <UserImg src={currentPerson.image} />
           <div className="user__info">
-            <h1>{currentPerson.username}</h1>
+            <h1>{currentPerson.name}</h1>
             <Description>{currentPerson.description}</Description>
             <h3 className="">Hobbies</h3>
             <HobbiesWrapper>
-              {currentPerson.hobbies.map((hobby) => (
+              {currentPerson.hobbies.map((hobby, i) => (
                 <Hobbies>{hobby}</Hobbies>
               ))}
             </HobbiesWrapper>

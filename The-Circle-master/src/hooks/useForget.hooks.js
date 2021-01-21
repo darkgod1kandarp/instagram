@@ -68,7 +68,7 @@ const useForget = (callback, validate) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
-
   return { handleChange, handleSubmit, values: values3, errors, OTP };
 };
+
 export default useForget;
