@@ -29,7 +29,6 @@ function App() {
   const history = useHistory();
   const [user, setUser] = useState({});
   useEffect(() => {
-    
     if (
       !user.username &&
       history.location.pathname !== "/SignIn" &&
