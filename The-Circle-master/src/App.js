@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import Explore from "./pages/Explore.pages";
 import DashBoard from "./App";
 import CrushSelection from "./components/CrushSelection/CrushSelection.component";
-import FormForgotVerification from './components/FormForgotVerification.component'
+import FormForgotVerification from "./components/FormForgotVerification.component";
 import {
   Reports,
   ReportsOne,
@@ -28,18 +28,20 @@ function App() {
   const history = useHistory();
   const [user, setUser] = useState({});
   useEffect(() => {
-    if (!user && history.location.pathname !== "/SignIn" && history.location.pathname !== "/Forgot") {
+    if (
+      !user &&
+      history.location.pathname !== "/SignIn" &&
+      history.location.pathname !== "/Forgot"
+    ) {
       history.push("/Signup");
-      console.log(history)
+      console.log(history);
     }
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <div>
-     
-     {user?(user.username?<Sidebar setUser={setUser} />:null):null}
+      {user ? user.username ? <Sidebar setUser={setUser} /> : null : null}
       <Switch>
         <Route path="/explore" component={Explore} />
         <Route
@@ -48,17 +50,23 @@ function App() {
           render={() => <SignupFormComp setUser={setUser} history={history} />}
         />
         <Route path="/SignIn" component={SigninFormComp} />
-        <Route path="/Forgot" render={() => <ForgetPasswordFormComp history
-        ={history} setUser={setUser}/>} />
 
-        <Route path="/getInfo" render={() => <FormSecondary user={user} history={history}/>}/>
-        <Route path="/verify" component={FormForgotVerification}/>
+        <Route
+          path="/Forgot"
+          render={() => (
+            <ForgetPasswordFormComp history={history} setUser={setUser} />
+          )}
+        />
 
         <Route
           path="/getInfo"
           render={() => <FormSecondary user={user} history={history} />}
         />
-        <Route path="/verifyotp" component={FormForgotVerification} />
+        <Route
+          path="/getInfo"
+          render={() => <FormSecondary user={user} history={history} />}
+        />
+        <Route path="/verify" component={FormForgotVerification} />
         {/* <Route path="/DashBoard" component={DashBoard}/> */}
         <Route path="/DashBoard" component={DashBoard}></Route>
         <Route path="/" render={() => <CrushSelection user={user} />}></Route>
