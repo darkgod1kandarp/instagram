@@ -8,6 +8,18 @@ import smtplib
 import math
 import random
 import datetime
+from PIL import Image
+from io import BytesIO
+from django.core.files import File
+# def compress_image(image):
+#     foo = Image.open(image)
+#     x, y = foo.size
+#     x2, y2 = math.floor(x-50), math.floor(y-20)
+#     foo = foo.resize((x2,y2),Image.ANTIALIAS)
+#     foo.save(foo, 'PNG', quality=10)
+#     compressed = File(foo, name=image.name)
+#     foo.close() 
+#     return compressed
 otp = False
 def generateOTP():
     digits = "0123456789"
@@ -50,15 +62,16 @@ def login_list(request):
                 first = login.objects.get(email1 = f)
                 sending = {'error':'already exist email'}
                 return JsonResponse(sending,status = 200)
-            except:             
+            except:
+
                 norm = ""
                 for i in range(3):
                     norm+=str(chr(random.randint(65,91)))
                 for i in range(3):
                     norm+=str(random.randint(0,9))
                 name1 = Name1.objects.create(username1 = k)
-                
                 sending  = {'error' : 'none','id':norm}
+                
                 tag1 = Tagged.objects.all()
                 x = data['latitude1']
                 y = data['longitude1']
@@ -108,13 +121,17 @@ def checking(request):
         login1 = login.objects.all()
         serializer = loginserializer(login1,many = True)
         return JsonResponse(serializer.data,safe=False)
+emaily = False
 @csrf_exempt
 def send_email(request):
     if request.method=="POST":
         data = JSONParser().parse(request)
         try:
-            print(data['email1'])
+            global emaily
+            def emaily():
+                return data['email1']
             check_email = login.objects.get(email1 = data['email1'])
+            
             print(1)
             f = generateOTP()
             global otp
@@ -131,10 +148,11 @@ def send_email(request):
 @csrf_exempt            
 def check_otp(request):
     if request.method=="POST":
-        data = JSONParser().parse(request)
-        print(data)
+        data1 = JSONParser().parse(request)
+        check_email = login.objects.get(email1 = emaily())
+        data = {'name1':check_email.name1.username1}
         f = otp()
-        if f==data['OTP1']:
+        if f==data1['OTP1']:
             return JsonResponse(data,status = 202)
         else:
             return JsonResponse(data,status = 401)
@@ -144,6 +162,7 @@ def image_storing(request):
         
         name1 = Name1.objects.get(username1 =request.POST['name1'])
         one  = pictures.objects.create(images = request.FILES['image'],name1 = name1)
+        
         url = one.images.url;
         sending = {"error":"done",'url':url}
         return JsonResponse(sending,status =200 )
@@ -189,13 +208,12 @@ def view(request):
                 case =  True
                 complete = learn.objects.filter(tag = data1)
                 
-                dic_overall = {}
+                dict_overall = {}
                 top = 0
                 for i in complete:
                     array = []
                     top +=1
                     f = hobby.objects.get(name1 = i.name1)
-
                     if f.hobby2==1:
                         array.append("hobby1")
                     if f.hobby2==1:
@@ -213,11 +231,6 @@ def view(request):
                     name = i.name1.username1
                     dict1 = {"image":ima,"description":desc,"hobby":array,"name":name}
                     dict_overall[top] = dict1
-
-
-                    
-                    
-                
                 updating = learn.objects.get(name1 =name12)
                 updating.latitude1 = data['latitude1']
                 updating.longitude1 = data['longitude1']
@@ -230,8 +243,7 @@ def view(request):
             for i in tag1:
                 count = i.box
             count+=1
-
-            dict_overall = {"error":"new user in that area"}
+            dict_overall = {"NWST"}
             tagging = Tagged.objects.create(box = count)
             updating = learn.objects.get(name1 =name12)
             updating.latitude1 = data['latitude1']
