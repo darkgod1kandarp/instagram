@@ -54,10 +54,29 @@ export default function Cropper({setImage}) {
       crop.height
     );
     setDataURI(canvas.toDataURL());
-        setImage(dataURI)
-    console.log(dataURI);
+    // console.log(dataURI);
   }, [completedCrop]);
+  const onsubmit = () => {
+    if (!dataURI) return;
+    var blobBin = atob(dataURI.split(",")[1]);
+    var array = [];
+    console.log(blobBin);
 
+    console.log(blobBin.length);
+
+    for (var i = 0; i < blobBin.length / 2; i++) {
+      array.push(blobBin.charCodeAt(i));
+    }
+    for (var i = blobBin.length / 2; i < blobBin.length; i++) {
+      array.push(blobBin.charCodeAt(i));
+    }
+
+    var file = new Blob([new Uint8Array(array)], { type: "image/png" });
+    // console.log(1);
+    console.log(file);
+    setisCroppingDone(true);
+    setImage(file)
+  };
   return (
     <div className="App">
       <div>
@@ -93,7 +112,7 @@ export default function Cropper({setImage}) {
           </div>
         )}
 
-        <button onClick={() => setisCroppingDone(true)}>Submit</button>
+        <button onClick={onsubmit}>Submit</button>
       </div>
     </div>
   );
