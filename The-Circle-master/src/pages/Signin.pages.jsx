@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../Form.css";
 
 import FormSuccess from "../components/FormSuccess.component";
 import FormSignin from "../components/FormSignin.component";

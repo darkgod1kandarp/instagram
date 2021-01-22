@@ -192,10 +192,12 @@ def view(request):
         data = JSONParser().parse(request)
         print(data)
         tag1 = Tagged.objects.all()
+        print(tag1)
         x = data['latitude1']
         y = data['longitude1']
         case = False
         name12 = Name1.objects.get(username1 = data['name1'])
+        print(name12)
         for i in tag1:
             data1 = i
             checking =  learn.objects.filter(tag = data1)

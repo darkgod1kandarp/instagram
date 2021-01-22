@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./CrushSelection.styles.css";
-import Header from "../Header.component";
-import Person from "../Person.component";
-import Lonely from "../Lonely.component";
-import data from "../data.json";
 import axios from "axios";
 import styled from "styled-components";
 const Card = styled.div`
