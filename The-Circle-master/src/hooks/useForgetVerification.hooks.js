@@ -5,6 +5,7 @@ const useForgetVerification = (callback, validate) => {
   //const [checker,setChecker]=useState({})
   const [values4, setValues4] = useState({
     OTP: "",
+    
   });
 
   const [errors, setErrors] = useState({});
@@ -52,14 +53,12 @@ const useForgetVerification = (callback, validate) => {
       })
         .then((resp) => {
           const checker = resp.status;
-          console.log(resp.status);
-          console.log(resp.data);
           // setChecker({checker:resp.status})
 
           if (checker === 202) {
-            console.log("teri");
+            console.log(resp.data)
+            callback(resp.data.name1)
           } else if (checker === 401) {
-            console.log("meri??????????");
           }
         })
         .catch((err) => console.log(err));

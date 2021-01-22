@@ -29,27 +29,20 @@ function App() {
   const history = useHistory();
   const [user, setUser] = useState({});
   useEffect(() => {
-    // if (
-    //   !user.id &&
-    //   history.location.pathname !== "/SignIn" &&
-    //   history.location.pathname !== "/Forgot"
-    // ) {
-    //   history.push("/Signup");
-    //   console.log(history);
-    // }
+    
+    if (
+      !user.username &&
+      history.location.pathname !== "/SignIn" &&
+      history.location.pathname !== "/Forgot"
+    ) {
+      history.push("/Signup");
+      console.log(history);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const MenuBar = () => {
-    if (user.username) {
-      console.log("hello");
-      return <Sidebar setUser={setUser} />;
-    } else {
-      return <div></div>;
-    }
-  };
   return (
     <div>
-      <MenuBar />
+      {user ? user.username ? <Sidebar setUser={setUser} /> : null : null}
       <Switch>
         <Route path="/explore" component={Explore} />
         <Route
@@ -58,12 +51,23 @@ function App() {
           render={() => <SignupFormComp setUser={setUser} history={history} />}
         />
         <Route path="/SignIn" component={SigninFormComp} />
-        <Route path="/Forgot" component={ForgetPasswordFormComp} />
+
+        <Route
+          path="/Forgot"
+          render={() => (
+            <ForgetPasswordFormComp history={history} setUser={setUser} />
+          )}
+        />
+
         <Route
           path="/getInfo"
           render={() => <FormSecondary user={user} history={history} />}
         />
-        <Route path="/verifyotp" component={FormForgotVerification} />
+        <Route
+          path="/getInfo"
+          render={() => <FormSecondary user={user} history={history} />}
+        />
+        <Route path="/verify" component={FormForgotVerification} />
         {/* <Route path="/DashBoard" component={DashBoard}/> */}
         <Route path="/DashBoard" component={DashBoard}></Route>
         <Route path="/map" exact component={Map} />

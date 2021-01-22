@@ -1,6 +1,7 @@
 import {useState , useEffect} from "react"
 import useSignUp from "../hooks/useSignUp.hooks";
 import axios from "axios";
+import Cropper from "./ImageCrop.component";
 const FormSecondary = ({user ,history}) => {
     const [imgsrc , setImgSrc] = useState("")
     const [image,setImage] = useState("")
@@ -64,7 +65,7 @@ const FormSecondary = ({user ,history}) => {
 return (
     <div>
         <form className="img" onSubmit ={handleSubmit} encType="multipart/form-data">
-      <input type="file" id="image" accept="image/png, image/jpeg"  onChange={handleImageChange} required />
+        <Cropper setImage={setImage}/>
         <button type="submit">upload</button>
       </form>
       <img src={imgsrc} height="100px" width="100px"/>

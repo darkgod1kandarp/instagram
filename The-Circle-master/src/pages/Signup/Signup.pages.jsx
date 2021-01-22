@@ -9,7 +9,7 @@ const Signup = ({ history, setUser }) => {
 
   const submitForm = () => {
     setIsSubmitted(true);
-    history.push("/");
+    history.push("/getInfo");
   };
   return (
     <div className="form-container">
