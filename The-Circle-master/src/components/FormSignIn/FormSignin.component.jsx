@@ -39,9 +39,11 @@ const FormSignin = ({ submitForm }) => {
           {errors.password && <p>{errors.password}</p>}
         </div>
         <div class="show-checkbox">
-          <input type="checkbox" id="show-pass" name="show-pass" value="Show" />
-          <label for="show-pass">Show password</label><br></br>
+          {/* <input type="checkbox" id="show-pass" name="show-pass" value="Show" />
+          <span id="checkbox-label">Show password</span> */}
+          <label><input type="checkbox" /> Show password</label>
         </div>
+
         <span className="form-forgot">
           <a href="/Forgot">Forgot Password?</a>
         </span>
