@@ -149,7 +149,7 @@ def send_email(request):
 @csrf_exempt            
 def check_otp(request):
     if request.method=="POST":
-        data1 = JSONParser().parse(request)
+        
         check_email = login.objects.get(email1 = emaily())
         data = {'name1':check_email.name1.username1}
         f = otp()
@@ -160,11 +160,17 @@ def check_otp(request):
 @csrf_exempt   
 def image_storing(request):
     if request.method=="POST":
-        
-        name1 = Name1.objects.get(username1 =request.POST['name1'])
-        one  = pictures.objects.create(images = request.FILES['image'],name1 = name1)
-        
+        data1 = JSONParser().parse(request)
+        image = data1['url'].split(",")
+        with open("1.txt",'w') as file:
+            file.write(image[1])
+        with open("1.txt",'rb') as fw:
+            with open('media/images/image1.png','wb') as fh:
+                fh.write(base64.decodebytes(fw.read()))
+        name1 = Name1.objects.get(username1 = data1['name1'])
+        one  = pictures.objects.create(images = "../media/images/image1.png",name1 = name1)
         url = one.images.url;
+        print(url)
         sending = {"error":"done",'url':url}
         return JsonResponse(sending,status =200 )
 @csrf_exempt 
@@ -174,7 +180,6 @@ def checking_image(request):
         one  = pictures.objects.get(name1 = name1)
         url = one.images.url
         data = {'url':url}
-        print(data)
         return JsonResponse(data,status =200)
 @csrf_exempt
 def getInfo(request):
@@ -253,6 +258,31 @@ def view(request):
             updating.save()
         print(dict_overall)
         return JsonResponse(dict_overall,status = 200)
+def getting_user_info(request):
+    data = JSONParser().parse(request)
+    name12 = Name1.objects.get(username1 = data['name1'])
+    pass_email = login.objects.get(name1 = name12)
+    descrpt = description.objects.get(name1 = name12)
+    f = hobby.objects.get(name1 = name12)
+    array = []
+    if f.hobby2==1:
+        array.append("hobby1")
+    if f.hobby2==1:
+        array.append("hobby2")
+    if  f.hobby3==1:
+        array.append("hobby3")
+    if f.hobby4==1:
+        array.append("hobby4")
+    if f.hobby5==1:
+        array.append("hobby5")
+    bir = birth.objects.get(name1 = name12)
+    one  = pictures.objects.get(name1 = name12)
+    url = one.images.url;
+    
+    data1= {"name1":name12.username1,"email1":pass_email.email1,'password':pass_email.password1,"description":descrpt.descript,"hobby":array,"DOB":bir.date1,'url':url}
+
+    return JsonResponse(data1,status = 200)
+    
 
                 
             

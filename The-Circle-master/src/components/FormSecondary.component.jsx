@@ -8,22 +8,27 @@ const FormSecondary = ({user ,history}) => {
     const [description,setDescription] = useState("")
     const [hobbies,setHobbies] = useState([0,0,0,0,0]);
     const [dob,setDob] = useState("")
+    // const []
   const handleSubmit = (e) => {
     e.preventDefault();
-    let form_data = new FormData();
-
-    form_data.append('image', image|Blob);
-    // form_data.append("image",image)
-    form_data.append('name1',user.username);
+//console.log (image)
+   const  data = JSON.stringify({
+      url : image,
+      name1: user.username
+    })
     let url = 'http://localhost:8000/image';
-    axios.post(url, form_data, {
+    axios.post(url, data, {
       headers: {
         'content-type': 'multipart/form-data'
       }
     })
         .then(res => {
           console.log(res);
-          setImgSrc(`http://localhost:8000${res.data.url}`)
+          setImgSrc("")
+          setTimeout(() => {
+            setImgSrc(`http://localhost:8000${res.data.url}`)
+
+          },500)
         })
         .catch(err => console.log(err))
   };
