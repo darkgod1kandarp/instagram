@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-
+import ImageBig from "../assets/banner-big.png";
 import FormSuccess from "../components/FormSuccess.component";
-import FormSignin from "../components/FormSignin.component";
+import FormSignin from "../components/FormSignIn/FormSignin.component";
+
 const Signin = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -12,7 +13,9 @@ const Signin = () => {
     <div className="form-container">
       <span className="close-btn">×</span>
       <div className="form-content-left">
-        <h1>tare je nakhvu hoy te</h1>
+        <div className="form-content-img-container">
+          <img className="TheCircle" src={ImageBig} alt="Logo" />
+        </div>
       </div>
 
       {!isSubmitted ? <FormSignin submitForm={submitForm} /> : <FormSuccess />}
