@@ -162,8 +162,7 @@ def image_storing(request):
     if request.method=="POST":
         
         name1 = Name1.objects.get(username1 =request.POST['name1'])
-        image = compress_image(request.FILES['image'])
-        one  = pictures.objects.create(images = image,name1 = name1)
+        one  = pictures.objects.create(images = request.FILES['image'],name1 = name1)
         
         url = one.images.url;
         sending = {"error":"done",'url':url}
