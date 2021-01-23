@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import validateSignUpInfo from "../../utils/validateSignUpInfo.utils";
+import { Link } from "react-router-dom";
 import useSignUp from "../../hooks/useSignUp.hooks";
 import "./FormSignup.styles.scss";
-import Signup from "../../pages/Signup/Signup.pages";
 const FormSignup = ({ submitForm, history, setUser }) => {
-  // const { handleChange, handleSubmit, values, errors } = useSignUp(
-  //   submitForm,
-  //   validateuse
-  // );
   const [showPassword, setShowPassword] = useState(false);
   const { handleChange, handleSubmit, values, user } = useSignUp(
     submitForm,
@@ -16,17 +12,21 @@ const FormSignup = ({ submitForm, history, setUser }) => {
   return (
     <div className="form-content-right">
       <h3 className="form-content-right-heading">
-        Welcome! Sign Up to continue
+        Welcome! <br /> Sign Up to continue
       </h3>
-      <form onSubmit={handleSubmit} className="form" noValidate>
-        <h1>Create account</h1>
-        <div className="form-inputs">
+      <form
+        onSubmit={handleSubmit}
+        className="form-content-right-form"
+        noValidate
+      >
+        <h1 className="form-content-right-form--heading">Create account</h1>
+        <div className="form-content-right-form--input__container">
           <label className="form-label">
             <input
-              className="form-input"
+              className="form-content-right-form--input__container--input"
               type="text"
               name="username"
-              placeholder="Enter your username"
+              placeholder="Name"
               value={values.username}
               onChange={handleChange}
             />
@@ -34,55 +34,61 @@ const FormSignup = ({ submitForm, history, setUser }) => {
           <p>{values.nameError}</p>
         </div>
 
-        <div className="form-inputs">
+        <div className="form-content-right-form--input__container">
           <label className="form-label">
             <input
-              className="form-input"
+              className="form-content-right-form--input__container--input"
               type="email"
               name="email"
-              placeholder="Enter your email"
+              placeholder="Your email address"
               value={values.email}
               onChange={handleChange}
             />
           </label>
           <p>{values.emailError}</p>
         </div>
-        <div className="form-inputs">
+        <div className="form-content-right-form--input__container">
           <label className="form-label">
             <input
-              className="form-input"
+              className="form-content-right-form--input__container--input"
               type={showPassword ? "text" : "password"}
               name="password"
-              placeholder="Enter your password"
+              placeholder="Create Password"
               value={values.password}
               onChange={handleChange}
             />
           </label>
           <p>{values.passwordError}</p>
         </div>
-        <div className="form-inputs">
+        <div className="form-content-right-form--input__container">
           <label className="form-label">
             <input
-              className="form-input"
+              className="form-content-right-form--input__container--input"
               type={showPassword ? "text" : "password"}
               name="password2"
-              placeholder="Confirm your password"
+              placeholder="Confirm Password"
               value={values.password2}
               onChange={handleChange}
             />
           </label>
           <p>{values.passwordError}</p>
         </div>
-        <input
-          type="checkbox"
-          id="show--password"
-          onClick={() => setShowPassword(!showPassword)}
-          required
-        />
-        <label htmlFor="show--password">show password</label>
+        <div className="signup-show--password">
+          <input
+            type="checkbox"
+            id="signup-show--password"
+            onClick={() => setShowPassword(!showPassword)}
+          />
+          <label
+            htmlFor="signup-show--password"
+            className="signup-show--password--label"
+          >
+            Show Password
+          </label>
+        </div>
 
         <button
-          className="form-input-btn"
+          className="form-content-right-btn"
           type="submit"
           onClick={() => {
             if (values.username) {
@@ -92,12 +98,19 @@ const FormSignup = ({ submitForm, history, setUser }) => {
             }
           }}
         >
-          Sign up
+          Sign Up
         </button>
-        <span className="form-input-login">
-          Already have an account? Login <a href="/SignIn">here</a>
-        </span>
+        <div className="signup-tc--container">
+          <input type="checkbox" id="signup-tc" required />
+          <label htmlFor="signup-tc" className="signup-tc--label">
+            By creating account or logging in , you agree to BookMyMum's{" "}
+            <Link>Condition of Use</Link> and <Link>policy</Link>
+          </label>
+        </div>
       </form>
+      <span className="form-input-login-link">
+        Already have an account? <Link to="/SignIn">Log In</Link>
+      </span>
     </div>
   );
 };

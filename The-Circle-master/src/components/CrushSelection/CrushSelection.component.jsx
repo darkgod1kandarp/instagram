@@ -83,35 +83,11 @@ const CrushSelection = ({ user }) => {
         setIndex(0);
       });
     });
-
-    // setPeople([
-    //   {
-    //     img_url:"https://via.placeholder.com/150",
-    //     username:"Heet Vakharia",
-    //     description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
-    //     hobbies:["hobby1","hobby2","hobby3","hobby5"]
-    //   }
-    //   ,{
-    //     img_url:"https://via.placeholder.com/150",
-    //     username:"Kanthan Vakharia",
-    //     description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
-    //     hobbies:["hobby1",,"hobby3","hobby4","hobby5"]
-    //   }
-    //   ,{
-    //     img_url:"https://via.placeholder.com/150",
-    //     username:"Prathana Sanghvi",
-    //     description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
-    //     hobbies:["hobby2","hobby3","hobby4","hobby5"]
-    //   }
-    //   ,{
-    //     img_url:"https://via.placeholder.com/150",
-    //     username:"Prachi Desai",
-    //     description:"Sunt nisi nostrud ex ad exercitation ea id mollit mollit occaecat elit. Aliqua incididunt nulla cupidatat est est anim deserunt deserunt tempor officia eiusmod enim ullamco. Do qui nostrud ipsum minim non occaecat pariatur adipisicing elit minim labore. Nisi laboris adipisicing fugiat eu minim deserunt adipisicing duis velit.",
-    //     hobbies:["hobby1","hobby2","hobby3","hobby4"]
-    //   },
-    // ])
-    setCurrentPerson(people[0]);
     console.log(people[0]);
+  }, []);
+  useEffect(() => {
+    setCurrentPerson(people[0]);
+    setIndex(0);
   }, []);
 
   const handleClick = (action) => {
@@ -152,32 +128,5 @@ const CrushSelection = ({ user }) => {
     </CardWrapper>
   );
 };
-// import React from 'react'
-// import axios from 'axios'
-// const App = () => {
-//   const geolocation = useGeolocation()
-//   const handleSubmit = (e) => {
-//   e.preventDefault();
-//   const data = {'latitude1':geolocation.latitude,'longitude1':geolocation.longitude,'name1':e.target.name1.value}
-//   const data1 = JSON.stringify(data) ;
-//   axios({
-//     method: 'post',
-//     url: 'http://localhost:8000',
-//     data: data1
-// }).then(res =>console.log(res)).catch(err => console.log(err))
-// }
-
-//   return !geolocation.error
-//     ? (
-//       <form onSubmit ={handleSubmit}>
-//       <input type="text" name = "name1"></input>
-//       <button></button>
-//       </form>
-//   )
-//     : (
-//       <p>No geolocation, sorry.</p>
-//     )
-// }
-// export default App;
 
 export default CrushSelection;
