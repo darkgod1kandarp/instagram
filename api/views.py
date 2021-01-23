@@ -8,18 +8,19 @@ import smtplib
 import math
 import random
 import datetime
+import base64
+import io
 from PIL import Image
-from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+def decodeDesignImage(data):
+    try:
+        data = base64.b64decode(data.encode('UTF-8'))
+        buf = io.BytesIO(data)
+        img = Image.open(buf)
+        return img
+    except:
+        return None
 from django.core.files import File
-# def compress_image(image):
-#     foo = Image.open(image)
-#     x, y = foo.size
-#     x2, y2 = math.floor(x-50), math.floor(y-20)
-#     foo = foo.resize((x2,y2),Image.ANTIALIAS)
-#     foo.save(foo, 'PNG', quality=10)
-#     compressed = File(foo, name=image.name)
-#     foo.close() 
-#     return compressed
 otp = False
 def generateOTP():
     digits = "0123456789"
