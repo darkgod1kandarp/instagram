@@ -10,7 +10,7 @@ import Overview from "./pages/Overview.pages";
 import SignupFormComp from "./pages/Signup.pages";
 import SigninFormComp from "./pages/Signin.pages";
 import ForgetPasswordFormComp from "./pages/Forget.pages";
-import FormSecondary from "./components/FormSecondary.component"
+import FormSecondary from "./components/FormSecondary.component";
 import { useState, useEffect } from "react";
 import Explore from "./pages/Explore.pages";
 import DashBoard from "./App";
@@ -42,11 +42,23 @@ function App() {
      {user?(user.username?<Sidebar setUser={setUser} />:null):null}
       <Switch>
         <Route path="/explore" component={Explore} />
-        <Route exact path="/Signup" render={() => <SignupFormComp setUser={setUser} history={history}/>} />
+        <Route
+          exact
+          path="/Signup"
+          render={() => <SignupFormComp setUser={setUser} history={history} />}
+        />
         <Route path="/SignIn" component={SigninFormComp} />
-        <Route path="/Forgot" component={ForgetPasswordFormComp} />
+        <Route path="/Forgot" render={() => <ForgetPasswordFormComp history
+        ={history} setUser={setUser}/>} />
+
         <Route path="/getInfo" render={() => <FormSecondary user={user} history={history}/>}/>
         <Route path="/verify" component={FormForgotVerification}/>
+
+        <Route
+          path="/getInfo"
+          render={() => <FormSecondary user={user} history={history} />}
+        />
+        <Route path="/verifyotp" component={FormForgotVerification} />
         {/* <Route path="/DashBoard" component={DashBoard}/> */}
         <Route path="/DashBoard" component={DashBoard}></Route>
         <Route path="/" render={() => <CrushSelection user={user} />}></Route>

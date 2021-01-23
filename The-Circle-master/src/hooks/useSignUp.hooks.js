@@ -75,6 +75,7 @@ const useSignUp = (callback, validate) => {
         longitude1:geolocation.longitude
       };
       const user1  = JSON.stringify(user)
+      
       axios({
         method: "post",
         url: "http://localhost:8000/kandarp",
@@ -89,6 +90,20 @@ const useSignUp = (callback, validate) => {
           });
         })
         .catch((err) => console.log(err));
+        axios({
+          method: "post",
+          url: "http://localhost:3001/kandarp",
+          data: user1,
+        })
+          .then(({data}) => {
+            const {id} = data
+            console.log(data);
+            setUser({
+              id,
+              username:values.username
+            });
+          })
+          .catch((err) => console.log(err));
     }
   };
 

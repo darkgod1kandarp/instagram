@@ -1,26 +1,34 @@
 import {useState , useEffect} from "react"
 import useSignUp from "../hooks/useSignUp.hooks";
 import axios from "axios";
+import Cropper from "./ImageCrop.component";
 const FormSecondary = ({user ,history}) => {
     const [imgsrc , setImgSrc] = useState("")
-    const [image,setImage] = useState("")
+    const [image,setImage] = useState()
     const [description,setDescription] = useState("")
     const [hobbies,setHobbies] = useState([0,0,0,0,0]);
     const [dob,setDob] = useState("")
+    // const []
   const handleSubmit = (e) => {
     e.preventDefault();
-    let form_data = new FormData();
-    form_data.append('image', image, image.name);
-    form_data.append('name1',user.username);
+//console.log (image)
+   const  data = JSON.stringify({
+      url : image,
+      name1: user.username
+    })
     let url = 'http://localhost:8000/image';
-    axios.post(url, form_data, {
+    axios.post(url, data, {
       headers: {
         'content-type': 'multipart/form-data'
       }
     })
         .then(res => {
           console.log(res);
-          setImgSrc(`http://localhost:8000${res.data.url}`)
+          setImgSrc("")
+          setTimeout(() => {
+            setImgSrc(`http://localhost:8000${res.data.url}`)
+
+          },500)
         })
         .catch(err => console.log(err))
   };
@@ -63,10 +71,9 @@ const FormSecondary = ({user ,history}) => {
   }
 return (
     <div>
-        <form className="img" onSubmit ={handleSubmit} encType="multipart/form-data">
-      <input type="file" id="image" accept="image/png, image/jpeg"  onChange={handleImageChange} required />
-        <button type="submit">upload</button>
-      </form>
+       
+        <Cropper setImage={setImage}/>
+        <button type="submit " onClick={handleSubmit}>upload</button>
       <img src={imgsrc} height="100px" width="100px"/>
         <input type="text" name="description" placeholder="description" value={description} onChange={({target}) => setDescription(target.value)} />
         <input type="date" name="DOB" placeholder="description" value={dob} onChange={({target}) => setDob(target.value)} />
@@ -75,8 +82,7 @@ return (
         <p onClick={() => handleHobbyChange(2)}>hobby3</p>
         <p onClick={() => handleHobbyChange(3)}>hobby4</p>
         <p onClick={() => handleHobbyChange(4)}>hobby5</p>
-        <button onClick={onBtnClick}>Submit</button>
-      
+        <button onClick={onBtnClick}>Submit2</button>     
     </div>
 )
 }

@@ -8,6 +8,19 @@ import smtplib
 import math
 import random
 import datetime
+import base64
+import io
+from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
+def decodeDesignImage(data):
+    try:
+        data = base64.b64decode(data.encode('UTF-8'))
+        buf = io.BytesIO(data)
+        img = Image.open(buf)
+        return img
+    except:
+        return None
+from django.core.files import File
 otp = False
 def generateOTP():
     digits = "0123456789"
@@ -35,7 +48,7 @@ def login_list(request):
         return JsonResponse(login1.data,safe=False)
     elif request.method=='POST':
         data = JSONParser().parse(request)
-        print(data)
+        print(data['email1'])
         try:
             k = data['name1'] 
             name_checking = Name1.objects.get(username1 = k)
@@ -50,15 +63,16 @@ def login_list(request):
                 first = login.objects.get(email1 = f)
                 sending = {'error':'already exist email'}
                 return JsonResponse(sending,status = 200)
-            except:             
+            except:
+
                 norm = ""
                 for i in range(3):
                     norm+=str(chr(random.randint(65,91)))
                 for i in range(3):
                     norm+=str(random.randint(0,9))
                 name1 = Name1.objects.create(username1 = k)
-                
                 sending  = {'error' : 'none','id':norm}
+                
                 tag1 = Tagged.objects.all()
                 x = data['latitude1']
                 y = data['longitude1']
@@ -108,13 +122,17 @@ def checking(request):
         login1 = login.objects.all()
         serializer = loginserializer(login1,many = True)
         return JsonResponse(serializer.data,safe=False)
+emaily = False
 @csrf_exempt
 def send_email(request):
     if request.method=="POST":
         data = JSONParser().parse(request)
         try:
-            print(data['email1'])
+            global emaily
+            def emaily():
+                return data['email1']
             check_email = login.objects.get(email1 = data['email1'])
+            
             print(1)
             f = generateOTP()
             global otp
@@ -131,20 +149,28 @@ def send_email(request):
 @csrf_exempt            
 def check_otp(request):
     if request.method=="POST":
-        data = JSONParser().parse(request)
-        print(data)
+        
+        check_email = login.objects.get(email1 = emaily())
+        data = {'name1':check_email.name1.username1}
         f = otp()
-        if f==data['OTP1']:
+        if f==data1['OTP1']:
             return JsonResponse(data,status = 202)
         else:
             return JsonResponse(data,status = 401)
 @csrf_exempt   
 def image_storing(request):
     if request.method=="POST":
-        
-        name1 = Name1.objects.get(username1 =request.POST['name1'])
-        one  = pictures.objects.create(images = request.FILES['image'],name1 = name1)
+        data1 = JSONParser().parse(request)
+        image = data1['url'].split(",")
+        with open("1.txt",'w') as file:
+            file.write(image[1])
+        with open("1.txt",'rb') as fw:
+            with open('media/images/image1.png','wb') as fh:
+                fh.write(base64.decodebytes(fw.read()))
+        name1 = Name1.objects.get(username1 = data1['name1'])
+        one  = pictures.objects.create(images = "../media/images/image1.png",name1 = name1)
         url = one.images.url;
+        print(url)
         sending = {"error":"done",'url':url}
         return JsonResponse(sending,status =200 )
 @csrf_exempt 
@@ -154,7 +180,6 @@ def checking_image(request):
         one  = pictures.objects.get(name1 = name1)
         url = one.images.url
         data = {'url':url}
-        print(data)
         return JsonResponse(data,status =200)
 @csrf_exempt
 def getInfo(request):
@@ -189,7 +214,7 @@ def view(request):
                 case =  True
                 complete = learn.objects.filter(tag = data1)
                 
-                dic_overall = {}
+                dict_overall = {}
                 top = 0
                 for i in complete:
                     array = []
@@ -233,6 +258,31 @@ def view(request):
             updating.save()
         print(dict_overall)
         return JsonResponse(dict_overall,status = 200)
+def getting_user_info(request):
+    data = JSONParser().parse(request)
+    name12 = Name1.objects.get(username1 = data['name1'])
+    pass_email = login.objects.get(name1 = name12)
+    descrpt = description.objects.get(name1 = name12)
+    f = hobby.objects.get(name1 = name12)
+    array = []
+    if f.hobby2==1:
+        array.append("hobby1")
+    if f.hobby2==1:
+        array.append("hobby2")
+    if  f.hobby3==1:
+        array.append("hobby3")
+    if f.hobby4==1:
+        array.append("hobby4")
+    if f.hobby5==1:
+        array.append("hobby5")
+    bir = birth.objects.get(name1 = name12)
+    one  = pictures.objects.get(name1 = name12)
+    url = one.images.url;
+    
+    data1= {"name1":name12.username1,"email1":pass_email.email1,'password':pass_email.password1,"description":descrpt.descript,"hobby":array,"DOB":bir.date1,'url':url}
+
+    return JsonResponse(data1,status = 200)
+    
 
                 
             

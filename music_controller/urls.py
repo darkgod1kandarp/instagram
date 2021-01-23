@@ -27,5 +27,6 @@ urlpatterns = [
     path('checkotp',check_otp,name="otp"),
     path('imagechecking',checking_image,name="abcd"),
     path('getting',getInfo ,name="get"),
-    path('view',view,name ="view")
+    path('view',view,name ="view"),
+    path('givinginfo',getting_user_info,name="informationofuser")
 ]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
