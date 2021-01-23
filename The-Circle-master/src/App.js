@@ -29,14 +29,14 @@ function App() {
   const history = useHistory();
   const [user, setUser] = useState({});
   useEffect(() => {
-    if (
-      !user.username &&
-      history.location.pathname !== "/SignIn" &&
-      history.location.pathname !== "/Forgot"
-    ) {
-      history.push("/Signup");
-      console.log(history);
-    }
+    // if (
+    //   !user.username &&
+    //   history.location.pathname !== "/SignIn" &&
+    //   history.location.pathname !== "/Forgot"
+    // ) {
+    //   history.push("/Signup");
+    //   console.log(history);
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

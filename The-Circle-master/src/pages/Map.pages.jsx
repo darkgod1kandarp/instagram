@@ -16,7 +16,6 @@ const Map = () => {
     transitionEasing: d3.easeCubic,
   };
   const [viewport, setViewport] = useState(defaultViewport);
-
   return (
     <ReactMapGL
       {...viewport}
