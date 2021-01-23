@@ -28,14 +28,12 @@ const FormForgot = ({ submitForm }) => {
         </div>
 
         <button className="form-input-btn" type="submit">
-          Send OTP
+          Continue
         </button>
-        <span className="form-input-login">
-          Do-not have a account? Sign Up <a href="/">Signup</a>
+        <span className="form-back">
+          <a href="/">Back</a>
         </span>
-        <span className="form-input-login">
-          Forgot Password? <a href="/Forgot">here</a>
-        </span>
+        
       </form>
     </div>
   );
