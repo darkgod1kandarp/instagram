@@ -14,15 +14,9 @@
     "react-dom": "^17.0.1",
     "react-hook-geolocation": "^1.0.7",
     "react-icons": "^4.1.0",
-<<<<<<< HEAD
     "react-map-gl": "^6.0.3",
     "react-mapbox-gl": "^5.1.1",
     "react-image-crop": "^8.6.6",
-=======
-    "react-image-crop": "^8.6.6",
-    "react-map-gl": "^6.0.3",
-    "react-mapbox-gl": "^5.1.1",
->>>>>>> 87a64ea392cc49da7a25b87ca9a934ac644e6275
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
     "styled-components": "^5.2.1",
