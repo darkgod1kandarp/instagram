@@ -7,11 +7,19 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
-    "dataurl-to-blob": "0.0.1",
+    "d3-ease": "^2.0.0",
+    "mapbox-gl": "^2.0.1",
+    "node-sass": "4.14.1",
+
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-geolocation": "^1.0.7",
     "react-icons": "^4.1.0",
+<<<<<<< HEAD
+=======
+    "react-map-gl": "^6.0.3",
+    "react-mapbox-gl": "^5.1.1",
+>>>>>>> d749db21eeea76c92c2449c4d877a8d0f1452ead
     "react-image-crop": "^8.6.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",

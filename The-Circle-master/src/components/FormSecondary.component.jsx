@@ -28,7 +28,7 @@ const FormSecondary = ({user ,history}) => {
           setTimeout(() => {
             setImgSrc(`http://localhost:8000${res.data.url}`)
 
-          },500)
+          },200)
         })
         .catch(err => console.log(err))
   };
