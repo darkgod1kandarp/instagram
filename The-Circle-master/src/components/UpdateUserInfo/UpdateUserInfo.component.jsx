@@ -1,15 +1,48 @@
 import { useState, useEffect } from "react";
-import useSignUp from "../hooks/useSignUp.hooks";
+import useSignUp from "../../hooks/useSignUp.hooks";
 import axios from "axios";
-import Cropper from "./ImageCrop.component";
-const FormSecondary = ({ user, history }) => {
+import Cropper from "../ImageCrop.component";
+const UpdateUserInfo = ({ user, history, setUser }) => {
   const [imgsrc, setImgSrc] = useState("");
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [hobbies, setHobbies] = useState([0, 0, 0, 0, 0]);
   const [dob, setDob] = useState("");
-  // const []
+  const [currentChoice, setCurrentChoice] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  useEffect(() => {
+    axios({
+      url: "http://localhost:8000/givinginfo",
+      method: "post",
+      data: JSON.stringify({
+        name1: user.username,
+      }),
+    }).then((resp) => {
+      const {
+        name1,
+        password,
+        url,
+        description,
+        email1,
+        hobby,
+        DOB,
+      } = resp.data;
+      setUser({
+        ...user,
+        username: name1,
+      });
+      setPassword(password);
+      setImgSrc(`http://localhost:8000//${url}`);
+      setDescription(description);
+      setEmail(email1);
+      setHobbies(hobby);
+      setDob(DOB);
+      console.log(resp.data);
+    });
+  });
   const handleSubmit = (e) => {
+    e.preventDefault();
     //console.log (image)
     const data = JSON.stringify({
       url: image,
@@ -64,15 +97,26 @@ const FormSecondary = ({ user, history }) => {
   };
   return (
     <div>
-      <Cropper setImage={setImage} handleSubmit={handleSubmit} />
-      <img src={imgsrc} height="100px" width="100px" />
-      <input
-        type="text"
-        name="description"
-        placeholder="description"
-        value={description}
-        onChange={({ target }) => setDescription(target.value)}
-      />
+      {currentChoice ===
+        "Image"(
+          <>
+            <Cropper setImage={setImage} handleSubmit={handleSubmit} />
+            <img src={imgsrc} height="100px" width="100px" />
+          </>
+        )}
+      {currentChoice === "description" ? (
+        <input
+          type="text"
+          name="description"
+          placeholder="description"
+          value={description}
+          onChange={({ target }) => setDescription(target.value)}
+        />
+      ) : (
+        <button onClick={() => currentChoice("description")}>
+          Change description
+        </button>
+      )}
       <input
         type="date"
         name="DOB"
@@ -80,6 +124,7 @@ const FormSecondary = ({ user, history }) => {
         value={dob}
         onChange={({ target }) => setDob(target.value)}
       />
+      <button></button>
       <p onClick={() => handleHobbyChange(0)}>hobby1</p>
       <p onClick={() => handleHobbyChange(1)}>hobby2</p>
       <p onClick={() => handleHobbyChange(2)}>hobby3</p>
@@ -89,4 +134,4 @@ const FormSecondary = ({ user, history }) => {
     </div>
   );
 };
-export default FormSecondary;
+export default UpdateUserInfo;

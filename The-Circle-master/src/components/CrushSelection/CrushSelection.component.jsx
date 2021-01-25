@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./CrushSelection.styles.css";
 import axios from "axios";
 import styled from "styled-components";
 const Card = styled.div`
@@ -50,44 +49,42 @@ const CrushSelection = ({ user }) => {
   const [currentPerson, setCurrentPerson] = useState(people[index]);
 
   useEffect(() => {
+    
     var longitude = 0,
       latitude = 0;
+      console.log(navigator.geolocation)
     navigator.geolocation.getCurrentPosition((position) => {
-      longitude = position.coords.longitude;
-      latitude = position.coords.latitude;
-      console.log(
-        position,
-        position.coords.longitude,
-        position.coords.latitude
-      );
-      const data = JSON.stringify({
-        name1: user.username,
-        longitude1: longitude,
-        latitude1: latitude,
-      });
-      axios({
-        method: "post",
-        url: "http://localhost:8000/view",
-        data,
-      }).then((resp) => {
-        const objArr = Object.keys(resp.data);
-        const personArr = [];
-        for (let i = 0; i < objArr.length; i++) {
-          if (resp.data[objArr[i]].name !== user.username) {
-            personArr.push(resp.data[objArr[i]]);
-            console.log(resp.data[objArr[i]]);
+        longitude = position.coords.longitude;
+        latitude = position.coords.latitude;
+        const data = JSON.stringify({
+          name1: user.username,
+          longitude1: longitude,
+          latitude1: latitude,
+        });
+        axios({
+          method: "post",
+          url: "http://localhost:8000/view",
+          data,
+        }).then((resp) => {
+          const objArr = Object.keys(resp.data);
+          const personArr = [];
+          for (let i = 0; i < objArr.length; i++) {
+            if (resp.data[objArr[i]].name !== user.username) {
+              personArr.push(resp.data[objArr[i]]);
+              //console.log(resp.data[objArr[i]]);
+            }
           }
-        }
-        setPeople(personArr);
-        setCurrentPerson(people[0]);
-        setIndex(0);
+          console.log(personArr, "Person Arr");
+          setPeople(personArr);
+          setCurrentPerson(people[0]);
+          setIndex(0);
+        }).then(() => {
+          console.log(people, "People");
+          setCurrentPerson(people[0]);
+          setIndex(0);
+        })
       });
-    });
     console.log(people[0]);
-  }, []);
-  useEffect(() => {
-    setCurrentPerson(people[0]);
-    setIndex(0);
   }, []);
 
   const handleClick = (action) => {
@@ -122,7 +119,7 @@ const CrushSelection = ({ user }) => {
           </div>
         </Card>
       ) : (
-        <h1>Kal AAna</h1>
+        <h1>Refresh Page</h1>
       )}
       <button onClick={() => handleClick("like")}>L</button>
     </CardWrapper>

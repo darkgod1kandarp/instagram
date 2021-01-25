@@ -1,14 +1,18 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import validateChangePassword from "../../utils/validateChangePassword.utils";
 import useSignIn from "../../hooks/useSignIn.hooks.";
 import "./FormSignIn.styles.scss";
 
-const FormSignin = ({ submitForm }) => {
+const FormSignin = ({ submitForm ,setUser }) => {
   const { handleChange, handleSubmit, values, errors, a } = useSignIn(
     submitForm,
     validateChangePassword
   );
-
+  useEffect(() => {
+    setUser(values)
+    console.log(values)
+  },[])
+  const [showPassword,setShowPassword] = useState(false);
   return (
     <div className="signIn-form-content-right">
       <form onSubmit={handleSubmit} className="form" noValidate>
@@ -30,7 +34,7 @@ const FormSignin = ({ submitForm }) => {
           <input
             id="pass"
             className="form-input"
-            type="password"
+            type={!showPassword?"password":"text"}
             name="password"
             placeholder="Password"
             value={values.password}
@@ -41,7 +45,7 @@ const FormSignin = ({ submitForm }) => {
         <div class="show-checkbox">
           {/* <input type="checkbox" id="show-pass" name="show-pass" value="Show" />
           <span id="checkbox-label">Show password</span> */}
-          <label><input type="checkbox" /> Show password</label>
+          <label><input type="checkbox" onClick={() => setShowPassword(!showPassword)}/> Show password</label>
         </div>
 
         <span className="form-forgot">

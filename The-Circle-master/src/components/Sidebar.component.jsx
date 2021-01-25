@@ -41,7 +41,7 @@ const SidebarNav = styled.nav`
 const SidebarWrap = styled.div`
   width: 100%;
 `;
-const Sidebar = ({setUser}) => {
+const Sidebar = ({ setUser ,history}) => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -53,9 +53,12 @@ const Sidebar = ({setUser}) => {
           <NavIcon to="#">
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          <Link to="/logout" onClick={() => setUser(null)}>
+          <Link to="/logout" onClick={() => {setUser(null)
+          history.push("/Signup")
+          }}>
             Log Out
           </Link>
+          <Link to="/updateUserInfo">Update</Link>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>

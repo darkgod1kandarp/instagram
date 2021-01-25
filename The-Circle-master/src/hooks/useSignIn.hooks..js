@@ -6,7 +6,7 @@ const useSignIn = (callback, validate) => {
   const [checker, setChecker] = useState({});
   const [values2, setValues2] = useState({
     email: "",
-    password: "",
+    username: "",
   });
   const [a, setA] = useState(false);
   const [errors, setErrors] = useState({});
@@ -61,10 +61,11 @@ const useSignIn = (callback, validate) => {
       })
         .then((resp) => {
           console.log(resp.status);
-          // setChecker({checker:resp.status})
+          setChecker({checker:resp.status})
 
           if (checker === 201) {
             setA(true);
+            setValues2(resp.data)
           }
         })
         .catch((err) => console.log(err));

@@ -109,19 +109,17 @@ def login_list(request):
 def checking(request):
     if request.method=="POST":
         data = JSONParser().parse(request)
+        
+        
         try:
-            print(login.objects.all())
             checking_email = login.objects.get(email1 = data['email1'])
-            print(checking_email)
+            username1 = checking_email.name1.username1
+            data1 = {'email1':data['email1'],'username1':username1}
             checking_password = login.objects.get(password1 = data['password1'])
-            return JsonResponse(data,status =201)
+            return JsonResponse(data1,status =201)
         except:
-            print(12345)
-            return JsonResponse(data,status = 402)
-    else:
-        login1 = login.objects.all()
-        serializer = loginserializer(login1,many = True)
-        return JsonResponse(serializer.data,safe=False)
+            return JsonResponse(data,status = 400)
+    
 emaily = False
 @csrf_exempt
 def send_email(request):
@@ -260,6 +258,7 @@ def view(request):
             updating.save()
         print(dict_overall)
         return JsonResponse(dict_overall,status = 200)
+@csrf_exempt 
 def getting_user_info(request):
     data = JSONParser().parse(request)
     name12 = Name1.objects.get(username1 = data['name1'])

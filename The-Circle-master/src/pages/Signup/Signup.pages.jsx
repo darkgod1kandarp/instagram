@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import FormSignup from "../../components/FormSignup/FormSignup.component";
-import FormSuccess from "../../components/FormSuccess.component";
 import ImageBig from "../../assets/banner-big.png";
 import "./Signup.styles.scss";
 const Signup = ({ history, setUser }) => {
@@ -18,11 +17,7 @@ const Signup = ({ history, setUser }) => {
           <img className="TheCircle" src={ImageBig} alt="Logo" />
         </div>
       </div>
-      {!isSubmitted ? (
         <FormSignup submitForm={submitForm} setUser={setUser} />
-      ) : (
-        <FormSuccess />
-      )}
     </div>
   );
 };

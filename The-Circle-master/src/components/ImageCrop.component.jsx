@@ -2,7 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from "react";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 
-export default function Cropper({setImage}) {
+export default function Cropper({ setImage ,handleSubmit }) {
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
@@ -54,30 +54,18 @@ export default function Cropper({setImage}) {
       crop.height
     );
     setDataURI(canvas.toDataURL());
-    // console.log(dataURI);
+  
   }, [completedCrop]);
   const onsubmit = () => {
-    // if (!dataURI) return;
-    // var blobBin = atob(dataURI.split(",")[1]);
-    // var array = [];
-    // console.log(blobBin);
+    if (!dataURI) return;
 
-    // console.log(blobBin.length);
-
-    // for (var i = 0; i < blobBin.length / 2; i++) {
-    //   array.push(blobBin.charCodeAt(i));
-    // }
-    // for (var i = blobBin.length / 2; i < blobBin.length; i++) {
-    //   array.push(blobBin.charCodeAt(i));
-    // }
-
-    // var file = new Blob([new Uint8Array(array)], { type: "image/png" });
-    // // console.log(1);
-    // console.log(file);
-    setDataURI(dataURI.split(",")[1]);
     setisCroppingDone(true);
-
-    setImage(dataURI)
+    setImage(dataURI);
+    handleSubmit()
+  };
+  const onClick = () => {
+    setisCroppingDone(false);
+    setUpImg(false);
   };
   return (
     <div className="App">
@@ -86,7 +74,7 @@ export default function Cropper({setImage}) {
           type="file"
           accept="image/*"
           onChange={onSelectFile}
-          onClick={() => setisCroppingDone(false)}
+          onClick={onClick}
         />
       </div>
 

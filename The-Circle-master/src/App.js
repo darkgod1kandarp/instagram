@@ -6,6 +6,7 @@ import {
   Route,
   useHistory,
 } from "react-router-dom";
+import { uid} from "uid"
 import Overview from "./pages/Overview.pages";
 import SignupFormComp from "./pages/Signup/Signup.pages";
 import SigninFormComp from "./pages/Signin.pages";
@@ -24,24 +25,25 @@ import {
   ReportsThree,
 } from "./pages/Reports.pages";
 import Team from "./pages/Team.pages";
-import SecuredRoute from "./components/SecuredRoute.component.jsx";
+import UpdateUserInfo from "./components/UpdateUserInfo/UpdateUserInfo.component";
+import useLocalStorage from './hooks/useLocalStorage'
 function App() {
   const history = useHistory();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useLocalStorage("Current User",{});
   useEffect(() => {
-    // if (
-    //   !user.username &&
-    //   history.location.pathname !== "/SignIn" &&
-    //   history.location.pathname !== "/Forgot"
-    // ) {
-    //   history.push("/Signup");
-    //   console.log(history);
-    // }
+    if (
+      !user.username &&
+      history.location.pathname !== "/SignIn" &&
+      history.location.pathname !== "/Forgot"
+    ) {
+      history.push("/Signup");
+      console.log(history);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
-      {user ? user.username ? <Sidebar setUser={setUser} /> : null : null}
+      {user ? user.username ? <Sidebar setUser={setUser} history={history} /> : null : null}
       <Switch>
         <Route path="/explore" component={Explore} />
         <Route
@@ -49,7 +51,7 @@ function App() {
           path="/Signup"
           render={() => <SignupFormComp setUser={setUser} history={history} />}
         />
-        <Route path="/SignIn" component={SigninFormComp} />
+        <Route path="/SignIn" render={() => <SigninFormComp history={history} setUser={setUser}/>} />
 
         <Route
           path="/Forgot"
@@ -77,7 +79,12 @@ function App() {
         <Route path="/reports/reports2" exact component={ReportsTwo} />
         <Route path="/reports/reports3" exact component={ReportsThree} />
         <Route path="/team" exact component={Team} />
-        <Route path="/" render={() => <CrushSelection user={user} />}></Route>
+        <Route
+          path="/updateUserInfo"
+          exact
+          render={() => <UpdateUserInfo user={user} setUser={setUser} />}
+        />
+        <Route path="/" render={() => <CrushSelection user={user} />} />
       </Switch>
     </div>
   );
