@@ -11,6 +11,7 @@ const FormSignin = ({ submitForm ,setUser }) => {
   useEffect(() => {
     setUser(values)
     console.log(values)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   const [showPassword,setShowPassword] = useState(false);
   return (

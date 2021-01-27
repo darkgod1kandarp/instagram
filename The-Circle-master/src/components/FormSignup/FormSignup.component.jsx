@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import validateSignUpInfo from "../../utils/validateSignUpInfo.utils";
-import { Link } from "react-router-dom";
 import useSignUp from "../../hooks/useSignUp.hooks";
 import {
   SignFormContainer,
@@ -22,7 +21,7 @@ import {
 } from "./FormSignup.styles";
 const FormSignup = ({ submitForm, history, setUser }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { handleChange, handleSubmit, values, user } = useSignUp(
+  const { handleChange, handleSubmit, values } = useSignUp(
     submitForm,
     validateSignUpInfo
   );

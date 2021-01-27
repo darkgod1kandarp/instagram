@@ -73,7 +73,7 @@ pytestdebug.log
 
 # Translations
 *.mo
-
+Node/node_modules
 # Django stuff:
 
 # Flask stuff:

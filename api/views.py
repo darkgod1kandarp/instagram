@@ -47,6 +47,7 @@ def login_list(request):
         
         return JsonResponse(login1.data,safe=False)
     elif request.method=='POST':
+        print(request)
         data = JSONParser().parse(request)
         print(data['email1'])
         try:

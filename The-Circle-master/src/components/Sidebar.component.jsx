@@ -53,8 +53,7 @@ const Sidebar = ({ setUser ,history}) => {
           <NavIcon to="#">
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          <Link to="/logout" onClick={() => {setUser(null)
-          history.push("/Signup")
+          <Link to="/Signup" onClick={() => {setUser(null)
           }}>
             Log Out
           </Link>

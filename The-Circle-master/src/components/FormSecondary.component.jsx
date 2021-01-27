@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import useSignUp from "../hooks/useSignUp.hooks";
+import { useState } from "react";
 import axios from "axios";
 import Cropper from "./ImageCrop.component";
 const FormSecondary = ({ user, history }) => {
@@ -65,7 +64,7 @@ const FormSecondary = ({ user, history }) => {
   return (
     <div>
       <Cropper setImage={setImage} handleSubmit={handleSubmit} />
-      <img src={imgsrc} height="100px" width="100px" />
+      <img src={imgsrc} height="100px" width="100px" alt = "Preview"/>
       <input
         type="text"
         name="description"
