@@ -1,9 +1,12 @@
 const http = require('http').createServer();
 const mysql = require('mysql');
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+    transports: ['websocket']
+});
 var client;
 const users = [];
 const group = {};
+
 io.on('connection',(socket)=>{
     console.log("Connnnnn");
     console.log(socket.id);
@@ -19,6 +22,13 @@ io.on('connection',(socket)=>{
         
         
    })
+   socket.on('greet', function(data) {
+    console.log(data);
+    socket.emit('respond', { hello: 'Hey, Mr.Client!' });
+  });
+  socket.on('disconnect', function() {
+    console.log('Socket disconnected');
+  });
    socket.on('send-message',(data)=>{
        console.log(data);
        io.to(users[data.name2]).emit('recieve-message',data)

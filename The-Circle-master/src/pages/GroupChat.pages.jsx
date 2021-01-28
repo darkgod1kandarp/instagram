@@ -4,12 +4,19 @@ let socket;
 const GroupChat = () => {
     useEffect(() =>{
         //
-        socket=io("http://localhost:3002");
-        console.log(socket,"socket")
+        socket=io("http://localhost:3002",{transports: ['websocket']});
         socket.on('trial', ()=>{
             alert('Hello');
         });
-        return socket.disconnect
+        socket.on('connect', function () {
+            console.log('connected!');
+            socket.emit('greet', { message: 'Hello Mr.Server!' });
+          });
+          
+          socket.on('respond', function (data) {
+            console.log(data);
+          });
+        //return socket.disconnect()
     }, []);
     return ( 
         <div className="">

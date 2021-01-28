@@ -1,10 +1,12 @@
 import "./App.scss";
 import Sidebar from "./components/Sidebar.component";
+//import data1 from "./Decrypt.js";
 import {
   Switch,
   Route,
   useHistory,
 } from "react-router-dom";
+//import data from "./Encrypt"
 import Overview from "./pages/Overview.pages";
 import SignupFormComp from "./pages/Signup/Signup.pages";
 import SigninFormComp from "./pages/Signin.pages";
@@ -26,11 +28,27 @@ import {
 import Team from "./pages/Team.pages";
 import UpdateUserInfo from "./components/UpdateUserInfo/UpdateUserInfo.component";
 import useLocalStorage from './hooks/useLocalStorage'
+
 function App() {
   const history = useHistory();
   const [user, setUser] = useState({});
+//   const Encrypt = (str) => {
+//     let pass = ""
+//     for(let i = 0;i<str.length;i++){
+//       pass = pass + data[str[i]];
+//     }
+//     return pass;
+//   }
+//   const Decrypt = (hash) => {
+//     const hashArr = hash.match(/.{7}/g)
+//     const strArr= [];
+//     hashArr.map(str => {
+//       strArr.push(data1[str])
+//     })
+//     return strArr.join("");
+// } 
   useEffect(() => {
-    // if (
+    // if 
     //   !user.username &&
     //   history.location.pathname !== "/SignIn" &&
     //   history.location.pathname !== "/Forgot"
@@ -38,8 +56,17 @@ function App() {
     //   history.push("/Signup");
     //   console.log(history);
     // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   const data1 ={};
+  //   const keyArr = Object.keys(data);
+  //  keyArr.map(key => {
+  //     data1[data[key]] = key;
+  //     return 0;
+  //   })
+  //  console.log(data1,keyArr)
+    // console.log(Encrypt("hello"))
+    // console.log(Decrypt(Encrypt("huiwahia")));
   }, []);
+  
   return (
     <div>
       {user ? user.username ? <Sidebar setUser={setUser} history={history} /> : null : null}

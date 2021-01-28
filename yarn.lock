@@ -576,6 +576,13 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
+react-encrypt-decrypt@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/react-encrypt-decrypt/-/react-encrypt-decrypt-0.0.2.tgz#919db208a07f46b99f7c2df4c75576fd93b083ca"
+  integrity sha512-zDMST0r3M0dJn4j3Md6e1+in7rR7VpS16UXj8AmfYvnvMpWdEo5OyGXBHjYiIEtYXtpsMhr2k3hlWLIG+J4k0w==
+  dependencies:
+    uid "^2.0.0"
+
 react-mapbox-gl@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/react-mapbox-gl/-/react-mapbox-gl-5.1.1.tgz#49e1ddf441c3ff9406d10ccd577ac5448d51584c"
